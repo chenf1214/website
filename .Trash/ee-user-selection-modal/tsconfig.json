@@ -1,0 +1,12 @@
+{
+    "extends": "ts-config-single-spa",
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        // "declarationDir": "dist",
+        "esModuleInterop": true,
+        "outDir": "./dist/esm"
+    },
+    "files": ["src/index.ts"],
+    // "include": ["src/**/*"],
+    "exclude": ["src/**/*.test*"]
+}

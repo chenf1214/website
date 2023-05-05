@@ -1,0 +1,61 @@
+.ee-contacts-picker__breadcrumb {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    font-size: 12px;
+    padding: 0 16px 0 24px;
+    margin-top: 4px;
+    justify-content: space-between;
+    &-left {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        flex: 1;
+        .icon-direction-left {
+            margin-right: 3px;
+            color: #8f959e;
+            display: flex;
+            width: 16px;
+            height: 16px;
+            font-size: 12px;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 2px;
+            &:hover {
+                background: #e6e6e6;
+            }
+        }
+        .breadcrumb-left-name {
+            color: #333333;
+            height: 20px;
+            line-height: 21px;
+            font-size: 12px;
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            .g-name {
+                max-width: 180px;
+                &.en {
+                    max-width: 160px;
+                }
+            }
+            .g-name-ext {
+                width: fit-content;
+            }
+        }
+    }
+
+    &-right {
+        display: flex;
+        align-items: center;
+        line-height: 20px;
+        cursor: pointer;
+
+        .breadcrumb-right-selectAll {
+            margin-left: 6px;
+            width: 24px;
+            color: rgba(128, 128, 128, 1);
+        }
+    }
+}

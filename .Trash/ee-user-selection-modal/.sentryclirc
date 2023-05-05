@@ -1,0 +1,7 @@
+[defaults]
+url=http://sevent.jd.com/
+org=entsre-sentry
+project=joyspace
+
+[auth]
+token=your_auth_token
