@@ -35,6 +35,12 @@ jobs:
       - name: test
         run: npm config get proxy && npm config get https-proxy
 
+      - name: test
+        run: npm config set registry https://registry.npm.taobao.org/
+
+      - name: test
+        run: npm config get proxy && npm config get https-proxy
+
       - name: Build
         run: yarn install && yarn build
 
