@@ -33,7 +33,7 @@ jobs:
         run: node -v
 
       - name: Build
-        run: npm install && npm run build
+        run: yarn install && yarn build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
