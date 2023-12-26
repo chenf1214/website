@@ -36,7 +36,7 @@ jobs:
         run: npm config get proxy && npm config get https-proxy
 
       - name: test
-        run: npm config set registry https://registry.npm.taobao.org/
+        run: npm config set registry https://registry.npm.taobao.org/ --global
 
       - name: test
         run: npm config get proxy && npm config get https-proxy
