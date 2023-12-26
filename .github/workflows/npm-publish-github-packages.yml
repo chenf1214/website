@@ -1,36 +1,43 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+name: Deploy GitHub Pages
 
-name: Node.js Package
-
+# 触发条件：在 push 到 master 分支后
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - master
 
+# 任务
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.18.1] #指定node版本
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          node-version: 16
-      - run: npm ci
-      - run: npm test
+          persist-credentials: false
 
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      # 添加这一步来设置环境变量
+      - name: Set Git SSL Cipher List
+        run: |
+          echo "export NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: 16
-          registry-url: https://npm.pkg.github.com/
-      - run: npm ci
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          node-version: 16.18.1
+
+      - name: test
+        run: node -v
+
+      - name: Build
+        run: npm install && npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.ACCESS_TOKEN3 }} # Github Personal Access Token （需在 repo 中勾选 repo:public_repo 和 user:read:user）
+          publish_dir: public # 部署文件目录，一般为 public 文件夹
+          commit_message: Deploy the blog # 提交信息
