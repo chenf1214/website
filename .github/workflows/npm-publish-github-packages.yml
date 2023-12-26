@@ -32,6 +32,9 @@ jobs:
       - name: test
         run: node -v
 
+      - name: test
+        run: npm config get proxy && npm config get https-proxy
+
       - name: Build
         run: yarn install && yarn build
 
