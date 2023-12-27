@@ -42,7 +42,7 @@ jobs:
         run: npm config get proxy && npm config get https-proxy
 
       - name: Build
-        run: yarn install && yarn build
+        run: npm install && npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
