@@ -9,11 +9,13 @@ on:
 # 任务
 jobs:
   build-and-deploy:
+    #这定义了一个名为 "build-and-deploy" 的作业。它将在最新的 Ubuntu 环境上运行，并使用指定的 Node.js 版本。
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.18.1] #指定node版本
     steps:
+      # 这一步骤使用 actions/checkout 操作，它会将代码仓库检出到工作目录中。
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -27,4 +29,3 @@ jobs:
         with:
           personal_token: ${{ secrets.ACCESS_TOKEN4 }} # Github Personal Access Token （需在 repo 中勾选 repo:public_repo 和 user:read:user）
           publish_dir: build # 部署文件目录，一般为 public 文件夹
-          commit_message: Deploy the blog # 提交信息
