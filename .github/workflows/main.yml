@@ -1,0 +1,27 @@
+name: Deploy GitHub Pages
+
+# 触发条件：在 push 到 master 分支后
+on:
+  push:
+    branches:
+      - master
+
+# 任务
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.18.1] #指定node版本
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.ACCESS_TOKEN4 }} # Github Personal Access Token （需在 repo 中勾选 repo:public_repo 和 user:read:user）
+          publish_dir: build # 部署文件目录，一般为 public 文件夹
+          commit_message: Deploy the blog # 提交信息
